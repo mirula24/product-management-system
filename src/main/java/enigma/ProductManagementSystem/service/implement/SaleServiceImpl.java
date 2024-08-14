@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +46,14 @@ public class SaleServiceImpl implements SaleService {
     public List<SaleResponse> getAll() {
         List<Sale> saleList = saleRepository.findAll();
         List<SaleResponse> saleResponses = saleList.stream().map(SaleResponse::new).toList();
+        return saleResponses;
+    }
+
+    @Override
+    public List<SaleResponse> findShopWithHighestSpend() {
+        List<Sale> saleList = saleRepository.findAll();
+        List<SaleResponse> saleResponses = saleList.stream().sorted((a,b) -> b.getQuantity() - a.getQuantity())
+                .map(SaleResponse::new).toList();
         return saleResponses;
     }
 

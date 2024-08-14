@@ -31,7 +31,20 @@ public class ProductController {
                     productService.getAll(),
                     HttpStatus.OK
             );
+        }@GetMapping("/search")
+        public  ResponseEntity<?> getProductWithStockAbove(@RequestParam Integer stock){
+            return new ResponseEntity<>(
+                    productService.getProductWithStockAbove(stock),
+                    HttpStatus.OK
+            );
         }
+    @GetMapping("/max_stock")
+    public  ResponseEntity<?> findProductWithMaxStock(){
+        return new ResponseEntity<>(
+                productService.getProductWithMaxStock(),
+                HttpStatus.OK
+        );
+    }
 
         @GetMapping("/{id}")
         public  ResponseEntity<?> getOne(@PathVariable Long id){

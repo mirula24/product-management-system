@@ -1,5 +1,6 @@
 package enigma.ProductManagementSystem.service;
 
+import enigma.ProductManagementSystem.model.Sale;
 import enigma.ProductManagementSystem.util.dto.SaleDto;
 import enigma.ProductManagementSystem.util.response.SaleResponse;
 
@@ -9,6 +10,8 @@ public interface SaleService {
     SaleResponse create(SaleDto request);
 
     List<SaleResponse> getAll();
+
+    List<SaleResponse> findShopWithHighestSpend();
 
     SaleResponse getOne(Long id);
 

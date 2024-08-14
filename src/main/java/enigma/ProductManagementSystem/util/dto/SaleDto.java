@@ -15,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SaleDto {
+
     private Long product_id;
 
     private Long shop_id;

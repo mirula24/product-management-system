@@ -31,9 +31,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getProductWithStockAbove(Integer stock) {
+        return productRepository.findProductWithStockAbove(stock);
+    }
+
+    @Override
     public List<Product> getAll() {
         List<Product> productList = productRepository.findAll();
         return productList;
+    }
+
+    @Override
+    public ProductResponse getProductWithMaxStock() {
+        Product getTheProduct = productRepository.findProductWithMaxStock();
+        return new ProductResponse(getTheProduct);
     }
 
     @Override
