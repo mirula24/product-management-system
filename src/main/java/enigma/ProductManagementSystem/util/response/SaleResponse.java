@@ -15,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SaleResponse {
+    private Long id;
     private Long product_id;
 
     private Long shop_id;
@@ -25,6 +26,7 @@ public class SaleResponse {
 
     private LocalDateTime dateTransaction;
     public SaleResponse(Sale sale){
+        this.id = sale.getId();
         this.product_id = sale.getProduct().getId();
         this.shop_id = sale.getShop().getId();
         this.amount = sale.getAmount();

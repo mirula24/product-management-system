@@ -19,8 +19,6 @@ public class SaleDto {
 
     private Long shop_id;
 
-    private Double amount;
-
     private Integer quantity;
 
     private LocalDateTime dateTransaction = LocalDateTime.now(ZoneId.of("Asia/Jakarta"));
