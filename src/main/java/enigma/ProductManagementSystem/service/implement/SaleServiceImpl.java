@@ -50,7 +50,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public List<SaleResponse> findShopWithHighestSpend() {
+    public List<SaleResponse> findShopWithHighestQuantity() {
         List<Sale> saleList = saleRepository.findAll();
         List<SaleResponse> saleResponses = saleList.stream().sorted((a,b) -> b.getQuantity() - a.getQuantity())
                 .map(SaleResponse::new).toList();
@@ -65,8 +65,26 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleResponse update(Long id, SaleDto request) {
+        Sale updateSale = saleRepository.findById(id).orElseThrow(()->new RuntimeException("Data Sale not found"));
+        Product rollbackProduck = productRepository.findById(updateSale.getProduct().getId()).orElseThrow(()-> new RuntimeException("Product not found"));
+        Integer storeBackStock = rollbackProduck.getStock() + updateSale.getQuantity();
+        rollbackProduck.setStock(storeBackStock);
 
-        return null;
+        productRepository.save(rollbackProduck);
+        Shop getShop = shopRepository.findById(request.getShop_id()).orElseThrow(()->new RuntimeException("Shop not found"));
+        Product getProduct = productRepository.findById(request.getProduct_id()).orElseThrow(()-> new RuntimeException("Product not found"));
+
+        Integer productStock =getProduct.getStock();
+        if (request.getQuantity() > productStock){
+            throw new RuntimeException("Product just " + getProduct.getStock() + " left");
+        }
+        Double amountCal = getProduct.getPrice() * request.getQuantity();
+        updateSale.setShop(getShop);
+        updateSale.setProduct(getProduct);
+        updateSale.setQuantity(request.getQuantity());
+        updateSale.setAmount(amountCal);
+        saleRepository.save(updateSale);
+        return new SaleResponse(updateSale);
     }
 
     @Override

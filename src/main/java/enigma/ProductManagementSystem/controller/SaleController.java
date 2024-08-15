@@ -32,10 +32,10 @@ public class SaleController {
             );
         }
 
-    @GetMapping("/high_spend")
+    @GetMapping("/high_quantity")
     public  ResponseEntity<?> high_speend(){
         return new ResponseEntity<>(
-                saleService.findShopWithHighestSpend(),
+                saleService.findShopWithHighestQuantity(),
                 HttpStatus.OK
         );
     }

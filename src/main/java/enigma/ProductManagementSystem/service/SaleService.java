@@ -11,7 +11,7 @@ public interface SaleService {
 
     List<SaleResponse> getAll();
 
-    List<SaleResponse> findShopWithHighestSpend();
+    List<SaleResponse> findShopWithHighestQuantity();
 
     SaleResponse getOne(Long id);
 
