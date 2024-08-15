@@ -1,0 +1,1868 @@
+openapi: 3.0.0
+info:
+  title: Product management
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+  - name: Inventory
+  - name: Product
+  - name: Shop
+  - name: Sale
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: mirulid@gmail.com
+                username: amirul
+                password: amirul123!Mu
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:19:29 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                username: amirul
+                email: mirulid@gmail.com
+  /api/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: amirul
+                password: amirul123!Mu
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:20:05 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                accessToken: >-
+                  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbWlydWwiLCJpYXQiOjE3MjM3MDI4MDUsImV4cCI6MTcyMzcwNjQwNX0.MUvXmQL5Wphsc0fu0jNedr4w4W4cjmT18a97vQX3sD8
+                refreshToken: >-
+                  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbWlydWwiLCJpYXQiOjE3MjM3MDI4MDUsImV4cCI6MTcyMzc4OTIwNX0.6GNDorAlRQwszLoieuJ5RVJYhfLkjJObMKi3-ozI_nk
+  /api/inventories:
+    post:
+      tags:
+        - Inventory
+      summary: Create Inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: DAP Cabang Jakarta Selatan
+                city: Jakarta
+                address: Jl. melati Kec. Ragunan
+      responses:
+        '201':
+          description: Created
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:27:21 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: DAP Cabang Jakarta Selatan
+                city: Jakarta
+                address: Jl. melati Kec. Ragunan
+    get:
+      tags:
+        - Inventory
+      summary: Get All Inventory
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:27:38 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 1
+                  name: CPU Storage
+                  city: Jakarta
+                  address: Jl. Processor No. 1
+                - id: 2
+                  name: GPU Warehouse
+                  city: Surabaya
+                  address: Jl. Graphics Card No. 2
+                - id: 3
+                  name: RAM Depot
+                  city: Bandung
+                  address: Jl. Memory Lane No. 3
+                - id: 4
+                  name: Motherboard Center
+                  city: Medan
+                  address: Jl. Main Board No. 4
+                - id: 5
+                  name: SSD & HDD Hub
+                  city: Makassar
+                  address: Jl. Storage Drive No. 5
+                - id: 6
+                  name: DAP Cabang Jakarta Selatan
+                  city: Jakarta
+                  address: Jl. melati Kec. Ragunan
+  /api/inventories/2:
+    get:
+      tags:
+        - Inventory
+      summary: Get the Inventory by ID
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:28:08 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: GPU Warehouse
+                city: Surabaya
+                address: Jl. Graphics Card No. 2
+  /api/inventories/6:
+    put:
+      tags:
+        - Inventory
+      summary: Update the inventories by ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 6
+                name: Enigma Cabang Jakarta Selatan
+                city: Jakarta
+                address: Jl. melati Kec. Ragunan
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:29:13 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: Enigma Cabang Jakarta Selatan
+                city: Jakarta
+                address: Jl. melati Kec. Ragunan
+  /api/inventories/7:
+    delete:
+      tags:
+        - Inventory
+      summary: Delete inventories by ID
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:29:53 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: null
+  /api/products:
+    post:
+      tags:
+        - Product
+      summary: Create Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                category: GPU
+                inventory_id: 1
+                name: NVIDIA GeForce RTX 4090
+                price: 17499000
+                stock: 40
+      responses:
+        '201':
+          description: Created
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:21:28 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                inventory_id: 1
+                name: NVIDIA GeForce RTX 4090
+                category: GPU
+                price: 17499000
+                stock: 40
+    get:
+      tags:
+        - Product
+      summary: Get All Product
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:21:49 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 1
+                  inventory:
+                    id: 1
+                    name: CPU Storage
+                    city: Jakarta
+                    address: Jl. Processor No. 1
+                  name: Intel Core i7-11700K
+                  category: CPU
+                  price: 399.99
+                  stock: 50
+                - id: 2
+                  inventory:
+                    id: 1
+                    name: CPU Storage
+                    city: Jakarta
+                    address: Jl. Processor No. 1
+                  name: AMD Ryzen 9 5900X
+                  category: CPU
+                  price: 549.99
+                  stock: 30
+                - id: 3
+                  inventory:
+                    id: 2
+                    name: GPU Warehouse
+                    city: Surabaya
+                    address: Jl. Graphics Card No. 2
+                  name: NVIDIA GeForce RTX 3080
+                  category: GPU
+                  price: 699.99
+                  stock: 20
+                - id: 4
+                  inventory:
+                    id: 2
+                    name: GPU Warehouse
+                    city: Surabaya
+                    address: Jl. Graphics Card No. 2
+                  name: AMD Radeon RX 6800 XT
+                  category: GPU
+                  price: 649.99
+                  stock: 25
+                - id: 5
+                  inventory:
+                    id: 3
+                    name: RAM Depot
+                    city: Bandung
+                    address: Jl. Memory Lane No. 3
+                  name: Corsair Vengeance LPX 32GB
+                  category: RAM
+                  price: 159.99
+                  stock: 100
+                - id: 6
+                  inventory:
+                    id: 4
+                    name: Motherboard Center
+                    city: Medan
+                    address: Jl. Main Board No. 4
+                  name: ASUS ROG Strix Z590-E Gaming
+                  category: Motherboard
+                  price: 379.99
+                  stock: 40
+                - id: 7
+                  inventory:
+                    id: 5
+                    name: SSD & HDD Hub
+                    city: Makassar
+                    address: Jl. Storage Drive No. 5
+                  name: Samsung 970 EVO Plus 1TB NVMe SSD
+                  category: Storage
+                  price: 179.99
+                  stock: 75
+                - id: 8
+                  inventory:
+                    id: 1
+                    name: CPU Storage
+                    city: Jakarta
+                    address: Jl. Processor No. 1
+                  name: NVIDIA GeForce RTX 4090
+                  category: GPU
+                  price: 17499000
+                  stock: 40
+  /api/products/search:
+    get:
+      tags:
+        - Product
+      summary: Get All Product with stock param
+      parameters:
+        - name: stock
+          in: query
+          schema:
+            type: integer
+          example: '40'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:22:37 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 1
+                  inventory:
+                    id: 1
+                    name: CPU Storage
+                    city: Jakarta
+                    address: Jl. Processor No. 1
+                  name: Intel Core i7-11700K
+                  category: CPU
+                  price: 399.99
+                  stock: 50
+                - id: 5
+                  inventory:
+                    id: 3
+                    name: RAM Depot
+                    city: Bandung
+                    address: Jl. Memory Lane No. 3
+                  name: Corsair Vengeance LPX 32GB
+                  category: RAM
+                  price: 159.99
+                  stock: 100
+                - id: 7
+                  inventory:
+                    id: 5
+                    name: SSD & HDD Hub
+                    city: Makassar
+                    address: Jl. Storage Drive No. 5
+                  name: Samsung 970 EVO Plus 1TB NVMe SSD
+                  category: Storage
+                  price: 179.99
+                  stock: 75
+  /api/products/max_stock:
+    get:
+      tags:
+        - Product
+      summary: Get the produck with Max stock
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:23:06 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                inventory_id: 3
+                name: Corsair Vengeance LPX 32GB
+                category: RAM
+                price: 159.99
+                stock: 100
+  /api/products/5:
+    get:
+      tags:
+        - Product
+      summary: Get the Product by ID Response
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:23:32 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                inventory_id: 3
+                name: Corsair Vengeance LPX 32GB
+                category: RAM
+                price: 159.99
+                stock: 100
+  /api/products/8:
+    put:
+      tags:
+        - Product
+      summary: Update the Product by ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                inventory_id: 2
+                name: NVIDIA GeForce RTX 4090
+                category: GPU
+                price: 17499000
+                stock: 40
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:26:02 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                inventory_id: 2
+                name: NVIDIA GeForce RTX 4090
+                category: GPU
+                price: 17499000
+                stock: 40
+  /api/products/2:
+    delete:
+      tags:
+        - Product
+      summary: Delete product by ID
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:26:27 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: null
+  /api/shops:
+    post:
+      tags:
+        - Shop
+      summary: Create shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Enigma computer
+                city: Jakarta
+                address: Mall Indonesia
+      responses:
+        '201':
+          description: Created
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:30:59 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: Enigma computer
+                city: Jakarta
+                address: Mall Indonesia
+    get:
+      tags:
+        - Shop
+      summary: Get All Shops
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:31:19 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - name: TechMart
+                  city: Jakarta
+                  address: Jl. Sudirman No. 123
+                - name: CompuWorld
+                  city: Surabaya
+                  address: Jl. Pemuda No. 456
+                - name: Gadget Galaxy
+                  city: Bandung
+                  address: Jl. Asia Afrika No. 789
+                - name: Digital Dreams
+                  city: Medan
+                  address: Jl. Diponegoro No. 101
+                - name: Cyber Center
+                  city: Makassar
+                  address: Jl. Urip Sumoharjo No. 202
+                - name: Enigma computer
+                  city: Jakarta
+                  address: Mall Indonesia
+  /api/shops/3:
+    get:
+      tags:
+        - Shop
+      summary: Get the shop
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:31:50 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: Gadget Galaxy
+                city: Bandung
+                address: Jl. Asia Afrika No. 789
+  /api/shops/6:
+    delete:
+      tags:
+        - Shop
+      summary: delete the shop
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:32:59 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: null
+  /api/sales:
+    post:
+      tags:
+        - Sale
+      summary: create sale
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_id: 5
+                shop_id: 1
+                quantity: 10
+      responses:
+        '201':
+          description: Created
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:33:33 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 6
+                product_id: 5
+                shop_id: 1
+                amount: 1599.9
+                quantity: 10
+                dateTransaction: '2024-08-15T13:33:33.0822506'
+    get:
+      tags:
+        - Sale
+      summary: Get All sales
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:33:59 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 1
+                  product_id: 4
+                  shop_id: 5
+                  amount: 649.99
+                  quantity: 1
+                  dateTransaction: '2024-07-19T13:18:58.979029'
+                - id: 2
+                  product_id: 5
+                  shop_id: 5
+                  amount: 159.99
+                  quantity: 1
+                  dateTransaction: '2024-08-12T13:18:58.979029'
+                - id: 3
+                  product_id: 3
+                  shop_id: 1
+                  amount: 2099.9700000000003
+                  quantity: 3
+                  dateTransaction: '2024-07-26T13:18:58.979029'
+                - id: 4
+                  product_id: 4
+                  shop_id: 5
+                  amount: 1299.98
+                  quantity: 2
+                  dateTransaction: '2024-07-28T13:18:58.979029'
+                - id: 5
+                  product_id: 2
+                  shop_id: 2
+                  amount: 1099.98
+                  quantity: 2
+                  dateTransaction: '2024-08-08T13:18:58.979029'
+                - id: 6
+                  product_id: 5
+                  shop_id: 1
+                  amount: 1599.9
+                  quantity: 10
+                  dateTransaction: '2024-08-15T13:33:33.082251'
+  /api/sales/5:
+    get:
+      tags:
+        - Sale
+      summary: Get the sale
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:34:18 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 5
+                product_id: 2
+                shop_id: 2
+                amount: 1099.98
+                quantity: 2
+                dateTransaction: '2024-08-08T13:18:58.979029'
+  /api/sales/high_spend:
+    get:
+      tags:
+        - Sale
+      summary: Get Shop with Highest Quantity
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:34:46 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 6
+                  product_id: 5
+                  shop_id: 1
+                  amount: 1599.9
+                  quantity: 10
+                  dateTransaction: '2024-08-15T13:33:33.082251'
+                - id: 3
+                  product_id: 3
+                  shop_id: 1
+                  amount: 2099.9700000000003
+                  quantity: 3
+                  dateTransaction: '2024-07-26T13:18:58.979029'
+                - id: 4
+                  product_id: 4
+                  shop_id: 5
+                  amount: 1299.98
+                  quantity: 2
+                  dateTransaction: '2024-07-28T13:18:58.979029'
+                - id: 5
+                  product_id: 2
+                  shop_id: 2
+                  amount: 1099.98
+                  quantity: 2
+                  dateTransaction: '2024-08-08T13:18:58.979029'
+                - id: 1
+                  product_id: 4
+                  shop_id: 5
+                  amount: 649.99
+                  quantity: 1
+                  dateTransaction: '2024-07-19T13:18:58.979029'
+                - id: 2
+                  product_id: 5
+                  shop_id: 5
+                  amount: 159.99
+                  quantity: 1
+                  dateTransaction: '2024-08-12T13:18:58.979029'
+  /api/sales/6:
+    put:
+      tags:
+        - Sale
+      summary: Update the sale
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_id: 3
+                shop_id: 1
+                quantity: 8
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:44:44 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 6
+                product_id: 3
+                shop_id: 1
+                amount: 5599.92
+                quantity: 8
+                dateTransaction: '2024-08-15T13:44:35.997751'
+  /api/sales/1:
+    delete:
+      tags:
+        - Sale
+      summary: delete the sale
+      responses:
+        '200':
+          description: OK
+          headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 15 Aug 2024 06:45:26 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: null
